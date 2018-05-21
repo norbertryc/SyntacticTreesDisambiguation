@@ -31,7 +31,7 @@ def _check_sentence(xml_tree, accept_tags=["forest","tree"]):
     """
     
     if type(xml_tree) != ET.ElementTree:
-        raise AssertionError("Bad argument type")
+        raise AssertionError("Argument xml_tree is not not ElementTree")
     
     
     if type(accept_tags) == str:
@@ -178,7 +178,7 @@ def terminals(tree):
     terminal_nodes = [x for x in tree.findall("node[terminal]")]
 
     terminals = [[(x.attrib["nid"],
-                   x.find("terminal//orth").text.replace(" ", ""),  # zdarzaja sie przypadki ze token jest ze spacja i potem wyglada to jakby bylo wiecej tokenow i sie dlugosc nie zgadza
+                   x.find("terminal//orth").text.replace(" ", ""),  # zdarzaja sie przypadki ze token zawiera w sobie spacje i potem wyglada to jakby bylo wiecej tokenow i sie dlugosc nie zgadza
                    x.find("terminal//base").text, 
                    x.find("terminal//f").text)]  for x in terminal_nodes]
 
